@@ -1,24 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
+import { Routes, Route, Navigate } from "react-router-dom";
+import { Button } from "@material-tailwind/react";
+import Welcome from "./auth/welcome";
+import Login from "./auth/login";
 
+import { Toaster } from "react-hot-toast";
+import Register from "./auth/register";
+import ComplainList from "./complain/complain-list";
+import Complain from "./complain/complain";
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Toaster />
+      <Routes>
+        <Route path="/login" element={<Welcome />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/" element={<ComplainList />} />
+        <Route path="/complain" element={<Complain />} />
+      </Routes>
+    </>
   );
 }
 
