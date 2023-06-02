@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { Button, Textarea } from "@material-tailwind/react";
+import { Button, Textarea, navbar } from "@material-tailwind/react";
 import { Input } from "@material-tailwind/react";
 import { Select, Option } from "@material-tailwind/react";
 import useGetCategory from "../apiHooks/Category/useGetCategory";
 import useAddComplain from "../apiHooks/complain/useAddComplain";
 import { useUserContext } from "../context/UserContext";
+import Navbar from "../layout/navbar";
 export const Complain = () => {
   const { user } = useUserContext();
   const user1 = JSON.parse(localStorage.getItem("user"));
@@ -52,73 +53,78 @@ export const Complain = () => {
     setDescription("");
   };
   return (
-    <div>
-      <form className="space-y-10" onSubmit={handleSubmit}>
-        <div>
-          <label>Name:</label>
-          <Input
-            value={name}
-            onChange={(e) => setname(e.target.value)}
+    <>
+      <Navbar />
+      <div className="p-5 ">
+        <form
+          className="space-y-10 p-5 border border-green-500 bg-gray-50"
+          onSubmit={handleSubmit}
+        >
+          <div>
+            <label>Name:</label>
+            <Input
+              value={name}
+              onChange={(e) => setname(e.target.value)}
+              size="lg"
+              disabled
+            />
+          </div>
+          <div>
+            <label>Email:</label>
+            <Input
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              size="lg"
+            />
+          </div>
+          {/* Parent Selector */}
+          <div>
+            <Select
+              defaultValue={category}
+              onChange={(e) => handleParentSelect(e)}
+              label="Select Category"
+              size="lg"
+            >
+              {data?.map((category, index) => (
+                <Option key={index} value={category?.name}>
+                  {category?.name}
+                </Option>
+              ))}
+            </Select>
+          </div>
+
+          {/* Child Selector */}
+
+          <div>
+            <Select
+              disabled={subcategories?.length > 0 ? false : true}
+              onChange={(e) => setSubCategory(e)}
+              label="Select Sub Category"
+              size="lg"
+            >
+              {subcategories?.map((category, index) => (
+                <Option key={index} value={category?._id}>
+                  {category?.name}
+                </Option>
+              ))}
+            </Select>
+          </div>
+
+          <Textarea
+            required
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
+            label="Description:"
             size="lg"
-            disabled
+            style={{ height: "100px", resize: "vertical" }}
           />
-        </div>
-        <div>
-          <label>Email:</label>
-          <Input
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            size="lg"
-            
-          />
-        </div>
-        {/* Parent Selector */}
-        <div>
-          <Select
-            defaultValue={category}
-            onChange={(e) => handleParentSelect(e)}
-            label="Select Category"
-            size="lg"
-          >
-            {data?.map((category, index) => (
-              <Option key={index} value={category?.name}>
-                {category?.name}
-              </Option>
-            ))}
-          </Select>
-        </div>
 
-        {/* Child Selector */}
-
-        <div>
-          <Select
-            disabled={subcategories?.length > 0 ? false : true}
-            onChange={(e) => setSubCategory(e)}
-            label="Select Sub Category"
-            size="lg"
-          >
-            {subcategories?.map((category, index) => (
-              <Option key={index} value={category?._id}>
-                {category?.name}
-              </Option>
-            ))}
-          </Select>
-        </div>
-
-        <Textarea
-          required
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
-          label="Description:"
-          size="lg"
-          style={{ height: "100px", resize: "vertical" }}
-        />
-
-        <Button type="submit" color="green">
-          Submit
-        </Button>
-      </form>
-    </div>
+          <Button type="submit" color="green">
+            Submit
+          </Button>
+        </form>
+      </div>
+    </>
   );
 };
 
