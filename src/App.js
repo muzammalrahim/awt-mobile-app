@@ -7,6 +7,7 @@ import { Toaster } from "react-hot-toast";
 import Register from "./auth/register";
 import ComplainList from "./complain/complain-list";
 import Complain from "./complain/complain";
+import Feedback from "./complain/feedback";
 function App() {
   return (
     <>
@@ -16,6 +17,9 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/" element={<ComplainList />} />
         <Route path="/complain" element={<Complain />} />
+        {/* feedback */}
+        <Route path="/feedback" element={<Feedback />} />
+
       </Routes>
     </>
   );

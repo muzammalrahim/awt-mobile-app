@@ -19,10 +19,14 @@ export const Complain = () => {
   const [email, setEmail] = useState(user1?.email);
   const [category, setCategory] = useState("");
   const [subcategory, setSubCategory] = useState("");
+  const [complainType, setComplainType] = useState("");
   const [description, setDescription] = useState("");
   // SubCategory List
   const [subcategories, setsubcategories] = useState([]);
 
+  const handleComplainTypeChange = (e) => {
+    setComplainType(e);
+  };
   // Making Categories For Selectors
   const handleParentSelect = (e) => {
     setsubcategories([]);
@@ -31,6 +35,7 @@ export const Complain = () => {
       setsubcategories(subCat?.subcategories);
     }
     setCategory(e);
+    // setComplainType(e);
   };
   // Handling Form Submit
 
@@ -38,19 +43,20 @@ export const Complain = () => {
     e.preventDefault();
     // Getting Category Id
     const { _id } = data?.find((o) => o.name === category);
-
+    console.log(e);
     addComplain({
       name,
       category: _id,
       subcategory,
       email,
+      complainType,
       description,
     });
     // Reset the form fields
     setCategory("");
     setSubCategory("");
     // setEmail("");
-    setDescription("");
+    // setDescription("");
   };
   return (
     <>
@@ -107,6 +113,18 @@ export const Complain = () => {
                   {category?.name}
                 </Option>
               ))}
+            </Select>
+          </div>
+
+          <div>
+            <Select
+              label="Select Complain Type"
+              size="lg"
+              value={complainType}
+              onChange={handleComplainTypeChange}
+            >
+              <Option value="Resident">Residential</Option>
+              <Option value="Commercial">Commercial</Option>
             </Select>
           </div>
 
