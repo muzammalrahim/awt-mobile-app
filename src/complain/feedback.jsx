@@ -8,8 +8,6 @@ const Feedback = ({ complainId, userId, handleCloseDialog }) => {
   const addReview = useAddReview();
   const handleSubmit = async (complainId, userId, e) => {
     e.preventDefault();
-
-    console.log("Handle Submit Rendering");
     const currentDate = new Date();
     const date = currentDate.toDateString();
     const check = await addReview({
