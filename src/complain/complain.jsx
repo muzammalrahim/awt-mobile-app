@@ -63,11 +63,11 @@ export const Complain = () => {
       <Navbar />
       <div className="p-5 ">
         <form
-          className="space-y-10 p-5 border border-green-500 bg-gray-50"
+          className="space-y-7 p-5 border border-green-500 bg-gray-50"
           onSubmit={handleSubmit}
         >
           <div>
-            <label>Name:</label>
+            <label className="text-teal-600 font-bold text-sm">Name:</label>
             <Input
               value={name}
               onChange={(e) => setname(e.target.value)}
@@ -76,11 +76,12 @@ export const Complain = () => {
             />
           </div>
           <div>
-            <label>Email:</label>
+            <label className="text-teal-600 font-bold text-sm">Email:</label>
             <Input
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               size="lg"
+              disabled
             />
           </div>
           {/* Parent Selector */}
@@ -90,6 +91,7 @@ export const Complain = () => {
               onChange={(e) => handleParentSelect(e)}
               label="Select Category"
               size="lg"
+              color="teal"
             >
               {data?.map((category, index) => (
                 <Option key={index} value={category?.name}>
@@ -107,6 +109,7 @@ export const Complain = () => {
               onChange={(e) => setSubCategory(e)}
               label="Select Sub Category"
               size="lg"
+              color="teal"
             >
               {subcategories?.map((category, index) => (
                 <Option key={index} value={category?._id}>
@@ -122,6 +125,7 @@ export const Complain = () => {
               size="lg"
               value={complainType}
               onChange={handleComplainTypeChange}
+              color="teal"
             >
               <Option value="Resident">Residential</Option>
               <Option value="Commercial">Commercial</Option>
@@ -135,9 +139,10 @@ export const Complain = () => {
             label="Description:"
             size="lg"
             style={{ height: "100px", resize: "vertical" }}
+            color="teal"
           />
 
-          <Button type="submit" color="green">
+          <Button type="submit" color="teal">
             Submit
           </Button>
         </form>

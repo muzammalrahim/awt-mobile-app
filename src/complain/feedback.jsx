@@ -21,6 +21,7 @@ const Feedback = ({ complainId, userId, handleCloseDialog }) => {
     });
     if (check) {
       handleCloseDialog();
+      window.location.reload();
       return;
     }
     // console.log(complainId, userId)
