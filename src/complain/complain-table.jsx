@@ -117,10 +117,9 @@ const ComplainTable = ({
                           {item.status.name === "In-Progress" ? (
                             <div
                               className="flex justify-center"
-                              onClick={() => handleOpenDialog(item._id)}
                             >
                               {!item.review && (
-                                <span className="text-yellow-900 text-normal text-[16px]">
+                                <span className="text-yellow-900 text-normal text-[12px]">
                                   <span className="font-bold text-black">Assigned to </span>{item?.worker?.name}
                                 </span>
                               )}
