@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Button, Option, Select, Textarea } from "@material-tailwind/react";
 import useAddReview from "../apiHooks/complain/useAddReview";
 
-const Feedback = ({ complainId, userId, handleCloseDialog }) => {
+const Feedback = ({fetchComplains, complainId, userId, handleCloseDialog }) => {
   const [feedback, setFeedback] = useState("");
   const [description, setDescription] = useState("");
   const addReview = useAddReview();
@@ -19,7 +19,7 @@ const Feedback = ({ complainId, userId, handleCloseDialog }) => {
     });
     if (check) {
       handleCloseDialog();
-      window.location.reload();
+      fetchComplains();
       return;
     }
     // console.log(complainId, userId)

@@ -36,6 +36,7 @@ export const ComplainList = ({ admin, official }) => {
         You have {pending} Pending Complains
       </h1> */}
       <ComplainTable
+      fetchComplains={fetchComplains}
         headings={headings}
         complains={complains}
         show={show}

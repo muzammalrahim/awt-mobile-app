@@ -6,7 +6,13 @@ import { Button, Option, Select, Textarea } from "@material-tailwind/react";
 import useAddReview from "../apiHooks/complain/useAddReview";
 import Feedback from "./feedback";
 
-const ComplainTable = ({ headings, complains, show, setshow }) => {
+const ComplainTable = ({
+  fetchComplains,
+  headings,
+  complains,
+  show,
+  setshow,
+}) => {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [openCardId, setOpenCardId] = useState(null);
   // const [review, setReview] = useState("");\
@@ -108,6 +114,19 @@ const ComplainTable = ({ headings, complains, show, setshow }) => {
                               )}
                             </div>
                           ) : null}
+                          {item.status.name === "In-Progress" ? (
+                            <div
+                              className="flex justify-center"
+                              onClick={() => handleOpenDialog(item._id)}
+                            >
+                              {!item.review && (
+                                <span className="text-yellow-900 text-normal text-[16px]">
+                                  <span className="font-bold text-black">Assigned to </span>{item?.worker?.name}
+                                </span>
+                              )}
+                            </div>
+                          ) : null}
+
                           {item.review && (
                             <span className="text-green-600 text-normal text-[14px]">
                               Submitted
@@ -117,6 +136,7 @@ const ComplainTable = ({ headings, complains, show, setshow }) => {
                       </div>
                       {isDialogOpen && openCardId === item._id && (
                         <Feedback
+                          fetchComplains={fetchComplains}
                           handleCloseDialog={handleCloseDialog}
                           complainId={item._id}
                           userId={item.userId}
