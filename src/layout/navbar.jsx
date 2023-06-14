@@ -9,7 +9,7 @@ const Navbar = () => {
   return (
     <nav className="bg-white p-4">
       <div className="container mx-auto flex items-center justify-between ">
-        <img src="img/awt_logo.png" alt="Logo" className="w-12 h-12" />
+        <img src="img/awt_logo.jpg" alt="Logo" className="w-14 h-14" />
         <Button
           className="focus:outline-none bg-[#16A085]"
           onClick={() => logout()}
