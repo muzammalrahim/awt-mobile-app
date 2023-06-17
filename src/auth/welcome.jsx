@@ -3,6 +3,7 @@ import { React, useState } from "react";
 import { Route, useNavigate } from "react-router-dom";
 import Login from "./login";
 import SVG from "./SVG";
+import LogoSvg from "./LogoSvg";
 const Welcome = () => {
  const navigate = useNavigate();
  const [showLogin, setShowLogin] = useState(false);
@@ -16,7 +17,8 @@ const Welcome = () => {
   <>
    <div className="container mx-auto px-4">
     <div className="flex justify-center mt-5">
-     <img src="img/new_logo.png" alt="Logo" className="h-[100px]" />
+     {/* <img src="img/new_logo.png" alt="Logo" className="h-[100px]" /> */}
+     <LogoSvg />
     </div>
     <div className="mt-10 flex justify-center p-5 py-0 ">
      {/* <img className="object-sm-cover w-full object-center" src="/img/login-mob.svg" alt="" /> */}
