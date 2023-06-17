@@ -19,7 +19,6 @@ const useLogin = () => {
     if (data?.user?.role !== "Resident") {
      return toast.error("User Not Found, Please Login Again");
     }
-    console.log(data);
     // Store the token in local storage or session storage
     localStorage.setItem("token", data?.token);
     localStorage.setItem("user", JSON.stringify(data?.user));
