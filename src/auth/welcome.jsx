@@ -1,10 +1,14 @@
 import { Button } from "@material-tailwind/react";
 import { React, useState } from "react";
+import { useUserContext } from "../context/UserContext";
 import { Route, useNavigate } from "react-router-dom";
 import Login from "./login";
 import SVG from "./SVG";
 import LogoSvg from "./LogoSvg";
+
 const Welcome = () => {
+ const { user } = useUserContext();
+ console.log(user, "User From WElcome Page");
  const navigate = useNavigate();
  const [showLogin, setShowLogin] = useState(false);
  const handleRegisterClick = () => {
