@@ -15,8 +15,7 @@ const useVerifyUser = (user1, setuser) => {
     setuser(data);
    }
   } catch (e) {
-   console.log(e);
-   setuser();
+   setuser(null);
    logout();
   }
  };
